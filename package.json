@@ -1,0 +1,21 @@
+{
+  "name": "vijaya",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "VIJAYA — An awareness atlas for India's sacred plant. Built with Vite + React.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.441.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2"
+  }
+}
