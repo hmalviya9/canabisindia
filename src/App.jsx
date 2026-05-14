@@ -17,6 +17,7 @@ import HempCommission from './pages/HempCommission';
 import Atlas from './pages/Atlas';
 import Citations from './pages/Citations';
 import Practitioners from './pages/Practitioners';
+import Conditions from './pages/Conditions';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/conditions" element={<Conditions />} />
         <Route path="/condition/:id" element={<ConditionResult />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/research" element={<Research />} />

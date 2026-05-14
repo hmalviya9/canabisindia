@@ -24,6 +24,7 @@ function Leaf({ size = 22 }) {
 }
 
 const PRIMARY = [
+  { to: '/conditions', label: 'Conditions' },
   { to: '/atlas', label: 'Atlas' },
   { to: '/timeline', label: 'Timeline' },
   { to: '/research', label: 'Research' },

@@ -20,6 +20,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-h">Read</div>
             <ul>
+              <li><Link to="/conditions">All conditions</Link></li>
               <li><Link to="/atlas">Reform atlas</Link></li>
               <li><Link to="/timeline">Timeline</Link></li>
               <li><Link to="/research">Research library</Link></li>

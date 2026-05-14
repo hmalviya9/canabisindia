@@ -130,8 +130,11 @@ export default function Home() {
 
           <div className="featured-foot">
             <p className="mono">
-              {conditions.filter(isFullyPopulated).length} of {conditions.length} conditions fully published. More each week.
+              {conditions.filter(isFullyPopulated).length} of {conditions.length} conditions fully sourced.
             </p>
+            <Link to="/conditions" className="featured-see-all mono">
+              See all {conditions.filter(isFullyPopulated).length} →
+            </Link>
           </div>
         </div>
       </section>
@@ -381,11 +384,29 @@ export default function Home() {
         }
 
         .featured-foot {
-          margin-top: 32px;
-          text-align: center;
+          margin-top: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 20px 32px;
           color: var(--ink-quiet);
           font-size: 12px;
           letter-spacing: 0.14em;
+        }
+        .featured-see-all {
+          color: var(--saffron);
+          font-size: 12px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          font-weight: 700;
+          padding: 10px 20px;
+          border: 1.5px solid var(--saffron);
+          transition: all 0.18s var(--ease-out);
+        }
+        .featured-see-all:hover {
+          background: var(--saffron);
+          color: var(--ink);
         }
 
         /* ===== MANIFESTO BAND ===== */
