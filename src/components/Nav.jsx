@@ -1,5 +1,7 @@
 // =============================================================
 // Nav — masthead. Sticky, minimal, editorial.
+// Primary row: brand + 4 main entries + Act CTA.
+// Secondary row: deeper pages (Citations, 1894, Practitioners, etc.)
 // =============================================================
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
@@ -21,6 +23,21 @@ function Leaf({ size = 22 }) {
   );
 }
 
+const PRIMARY = [
+  { to: '/atlas', label: 'Atlas' },
+  { to: '/timeline', label: 'Timeline' },
+  { to: '/research', label: 'Research' },
+  { to: '/ndps', label: 'The Law' },
+];
+
+const SECONDARY = [
+  { to: '/citations', label: 'Citations' },
+  { to: '/hemp-commission', label: '1894 Report' },
+  { to: '/practitioners', label: 'Practitioners' },
+  { to: '/archetype', label: 'Archetype' },
+  { to: '/dashboard', label: 'Saved' },
+];
+
 export default function Nav() {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
@@ -31,18 +48,28 @@ export default function Nav() {
         <Link to="/" className="brand" aria-label="VIJAYA home">
           <Leaf />
           <span className="brand-name">VIJAYA</span>
-          <span className="brand-vers mono">v2</span>
+          <span className="brand-vers mono">v3</span>
         </Link>
 
-        <nav className="nav-links mono">
-          <NavLink to="/timeline" className={({ isActive }) => isActive ? 'active' : ''}>Timeline</NavLink>
-          <NavLink to="/research" className={({ isActive }) => isActive ? 'active' : ''}>Research</NavLink>
-          <NavLink to="/directory" className={({ isActive }) => isActive ? 'active' : ''}>Directory</NavLink>
-          <NavLink to="/archetype" className={({ isActive }) => isActive ? 'active' : ''}>Archetype</NavLink>
-          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>Saved</NavLink>
+        <nav className="nav-links primary mono" aria-label="Primary">
+          {PRIMARY.map((l) => (
+            <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''}>
+              {l.label}
+            </NavLink>
+          ))}
           <NavLink to="/petition" className={({ isActive }) => isActive ? 'active petition-link' : 'petition-link'}>
             Act ↗
           </NavLink>
+        </nav>
+      </div>
+
+      <div className="container sub-row">
+        <nav className="nav-links secondary mono" aria-label="Secondary">
+          {SECONDARY.map((l) => (
+            <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''}>
+              {l.label}
+            </NavLink>
+          ))}
         </nav>
       </div>
 
@@ -62,11 +89,7 @@ export default function Nav() {
           justify-content: space-between;
           height: 70px;
         }
-        .brand {
-          display: flex;
-          align-items: baseline;
-          gap: 10px;
-        }
+        .brand { display: flex; align-items: baseline; gap: 10px; }
         .brand svg { transform: translateY(4px); }
         .brand-name {
           font-family: var(--serif);
@@ -85,11 +108,11 @@ export default function Nav() {
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 26px;
           font-size: 12px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
         }
+        .nav-links.primary { gap: 26px; }
         .nav-links a {
           color: var(--ink-quiet);
           padding: 4px 0;
@@ -105,15 +128,34 @@ export default function Nav() {
           color: var(--saffron);
           font-weight: 700;
         }
-        .nav-links .petition-link:hover {
-          color: var(--saffron-deep);
+        .nav-links .petition-link:hover { color: var(--saffron-deep); }
+
+        .sub-row {
+          height: 38px;
+          display: flex;
+          align-items: center;
+          border-top: 1px solid var(--line);
+        }
+        .nav-links.secondary {
+          gap: 22px;
+          font-size: 10.5px;
+          letter-spacing: 0.16em;
+          width: 100%;
+          justify-content: flex-end;
+        }
+        .nav-links.secondary a {
+          color: var(--ink-quiet);
+          padding: 2px 0;
+          font-weight: 500;
         }
 
-        @media (max-width: 920px) {
-          .nav-links { gap: 14px; font-size: 10px; }
+        @media (max-width: 1024px) {
+          .nav-links.primary { gap: 18px; font-size: 11px; letter-spacing: 0.12em; }
+          .nav-links.secondary { gap: 14px; font-size: 10px; }
         }
-        @media (max-width: 720px) {
-          .nav-links a:not(.petition-link) { display: none; }
+        @media (max-width: 820px) {
+          .sub-row { display: none; }
+          .nav-links.primary a:not(.petition-link) { display: none; }
           .nav-inner { height: 60px; }
           .brand-name { font-size: 22px; }
         }

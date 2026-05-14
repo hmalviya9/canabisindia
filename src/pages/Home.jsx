@@ -23,7 +23,7 @@ export default function Home() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-meta fade-up">
-              <span className="eyebrow">VIJAYA v2  ·  EVIDENCE FILE</span>
+              <span className="eyebrow">VIJAYA v3  ·  EVIDENCE FILE</span>
               <div className="hero-coords mono">23.0225°N  ·  72.5714°E</div>
             </div>
 
@@ -70,10 +70,10 @@ export default function Home() {
             <div className="thesis-block">
               <div className="thesis-num mono">01</div>
               <h3 className="thesis-h">
-                Sushruta wrote the protocol in <em>600 BCE</em>.
+                Sushruta did the first surgery under cannabis anesthesia in <em>600 BCE</em>.
               </h3>
               <p className="thesis-body">
-                The classical surgeon prescribed vijaya for pain, nausea, convulsions, and insomnia. Charaka classified it. Bhavaprakasha refined it. India had a working pharmacopeia of cannabis medicine before Europe had Latin.
+                Wine plus cannabis incense — the world's first documented surgical sedative, preceding Western anesthesia by 23 centuries. The therapeutic pharmacology of vijaya for pain, sleep, nausea, and convulsions was catalogued in Bhāvaprakāśa Nighaṇṭu (verse 233), refined in the Ananda Kanda Rasa Shastra, and paralleled in Unani Tibb as Qinnāb. India had a working pharmacopeia of cannabis medicine before Europe had a word for anesthesia.
               </p>
             </div>
             <div className="thesis-block">

@@ -12,6 +12,11 @@ import Directory from './pages/Directory';
 import Petition from './pages/Petition';
 import Dashboard from './pages/Dashboard';
 import Archetype from './pages/Archetype';
+import NDPS from './pages/NDPS';
+import HempCommission from './pages/HempCommission';
+import Atlas from './pages/Atlas';
+import Citations from './pages/Citations';
+import Practitioners from './pages/Practitioners';
 
 export default function App() {
   return (
@@ -26,6 +31,11 @@ export default function App() {
         <Route path="/petition" element={<Petition />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/archetype" element={<Archetype />} />
+        <Route path="/ndps" element={<NDPS />} />
+        <Route path="/hemp-commission" element={<HempCommission />} />
+        <Route path="/atlas" element={<Atlas />} />
+        <Route path="/citations" element={<Citations />} />
+        <Route path="/practitioners" element={<Practitioners />} />
       </Routes>
       <Footer />
     </BrowserRouter>

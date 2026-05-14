@@ -92,7 +92,7 @@ export default function ConditionSearch({ autoFocus = false, size = 'hero' }) {
           <div className="search-empty">
             <div className="search-empty-title">No match yet.</div>
             <div className="search-empty-body">
-              VIJAYA v2 launches with 30 conditions. More added weekly. Try: <em>epilepsy</em>, <em>chronic pain</em>, <em>PTSD</em>, <em>MS</em>, <em>chemotherapy</em>.
+              VIJAYA v3 publishes 30 conditions — 18 fully sourced across Ayurveda, Unani, and modern medical evidence. Try: <em>epilepsy</em>, <em>chronic pain</em>, <em>PTSD</em>, <em>MS</em>, <em>anxiety</em>, <em>Crohn's</em>, <em>Tourette</em>, <em>endometriosis</em>.
             </div>
           </div>
         </div>

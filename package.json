@@ -1,9 +1,9 @@
 {
-  "name": "vijaya-v2",
+  "name": "vijaya-v3",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
-  "description": "VIJAYA v2 — The symptom-to-therapy matcher for India's sacred plant. 3,500 years of evidence, one search away.",
+  "description": "VIJAYA v3 — 18 conditions, 13 verified classical citations across three traditions (Ayurveda, Unani, Sowa Rigpa). The evidence file.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -20,6 +20,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-h">Read</div>
             <ul>
+              <li><Link to="/atlas">Reform atlas</Link></li>
               <li><Link to="/timeline">Timeline</Link></li>
               <li><Link to="/research">Research library</Link></li>
               <li><Link to="/archetype">Archetype quiz</Link></li>
@@ -27,10 +28,19 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
+            <div className="footer-h">Evidence</div>
+            <ul>
+              <li><Link to="/citations">Classical citations</Link></li>
+              <li><Link to="/ndps">The NDPS Act, plain English</Link></li>
+              <li><Link to="/hemp-commission">1894 Hemp Commission</Link></li>
+              <li><Link to="/practitioners">Practitioners</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
             <div className="footer-h">Act</div>
             <ul>
               <li><Link to="/petition">Reform NDPS</Link></li>
-              <li><Link to="/directory">Find a practitioner</Link></li>
               <li><Link to="/dashboard">Your saved</Link></li>
             </ul>
           </div>
@@ -45,7 +55,7 @@ export default function Footer() {
 
         <div className="footer-bottom mono">
           <div>© VIJAYA — open evidence, no rights reserved.</div>
-          <div>v2.0 · built in India</div>
+          <div>v3.0 · built in India</div>
         </div>
       </div>
 
@@ -58,8 +68,8 @@ export default function Footer() {
         }
         .footer-grid {
           display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1.5fr;
-          gap: 56px;
+          grid-template-columns: 1.8fr 1fr 1.2fr 1fr 1.4fr;
+          gap: 48px;
           padding-bottom: 60px;
           border-bottom: 1px solid rgba(245, 240, 230, 0.18);
         }
