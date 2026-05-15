@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Bookmark, BookmarkCheck, Download, Share2, ArrowLeft, ExternalLink } from 'lucide-react';
 import { getConditionById, isFullyPopulated, conditions } from '../data/conditions';
+import { getCitation } from '../data/citations';
 import { downloadIgCard, downloadXCard, renderIgCard } from '../lib/shareCard';
 import { toggleBookmark, isBookmarked } from '../lib/storage';
 
@@ -74,6 +75,25 @@ export default function ConditionResult() {
     }
   }
 
+  // ---- Derive display fields safely from the new data shape ----
+  // The new conditions structure anchors to a citation by id, not by
+  // hardcoded `century` / `source` strings. We look up the citation
+  // and extract sensible display values, falling back gracefully.
+  const citation = getCitation(condition.classical?.primary_citation_id);
+  const classicalSourceLabel = citation
+    ? `${citation.work}${citation.location ? ' · ' + citation.location : ''}`
+    : 'Classical Indian pharmacopeia';
+  const classicalPeriodLabel = citation?.period || 'Medieval Ayurvedic period';
+  // The first year in the period string, used as the "Indian protocol filed" tick.
+  // Tries to find any 4-digit year (e.g. "1500"), else falls back to "16th c."
+  const periodYearMatch = classicalPeriodLabel.match(/\d{4}|\d{1,2}\w{0,2}\s*c(?:entury)?/i);
+  const classicalYearTick = periodYearMatch ? periodYearMatch[0] : '16th c.';
+  // Modern approval year — first 4-digit year in any protocol status string
+  const modernYearTick =
+    condition.modern?.protocols
+      ?.map((p) => p.status?.match(/\d{4}/)?.[0])
+      .find(Boolean) || '2018';
+
   return (
     <main className="result">
       {/* ===== HEADER STRIP ===== */}
@@ -87,7 +107,7 @@ export default function ConditionResult() {
             <span className="dot">·</span>
             <span>{condition.category.toUpperCase()}</span>
             <span className="dot">·</span>
-            <span>FILED {condition.classical.century}</span>
+            <span>FILED {classicalPeriodLabel}</span>
           </div>
           <div className="strip-actions">
             <button onClick={handleBookmark} aria-label="Save" className="strip-action">
@@ -125,7 +145,7 @@ export default function ConditionResult() {
             <aside className="head-aside fade-up delay-2">
               <div className="century-rail">
                 <div className="century-tick">
-                  <span className="mono tick-year">{condition.classical.century.split(/[-–—]/)[0].trim()}</span>
+                  <span className="mono tick-year">{classicalYearTick}</span>
                   <span className="mono tick-label">Indian protocol filed</span>
                 </div>
                 <div className="century-line" />
@@ -140,9 +160,7 @@ export default function ConditionResult() {
                 </div>
                 <div className="century-line" />
                 <div className="century-tick evidence">
-                  <span className="mono tick-year">
-                    {condition.modern.protocols[0]?.status?.match(/\d{4}/)?.[0] || '2018'}
-                  </span>
+                  <span className="mono tick-year">{modernYearTick}</span>
                   <span className="mono tick-label">Modern approval</span>
                 </div>
               </div>
@@ -163,16 +181,26 @@ export default function ConditionResult() {
                   <em>{condition.classical.sanskrit_name}</em>
                 </h2>
                 <div className="col-source mono">
-                  {condition.classical.source}  ·  {condition.classical.century}
+                  {classicalSourceLabel}  ·  {classicalPeriodLabel}
                 </div>
               </header>
 
               <div className="col-body">
-                <h3 className="col-sub">Protocol</h3>
-                <p>{condition.classical.protocol}</p>
+                <h3 className="col-sub">Indications in the classical text</h3>
+                <p>{condition.classical.indications_in_classical_text}</p>
 
-                <h3 className="col-sub">Reading</h3>
-                <p>{condition.classical.reading}</p>
+                {condition.classical.tradition_note && (
+                  <>
+                    <h3 className="col-sub">A scholarly note</h3>
+                    <p>{condition.classical.tradition_note}</p>
+                  </>
+                )}
+
+                {citation?.edition && (
+                  <div className="col-edition mono">
+                    <span className="edition-label">EDITION:</span> {citation.edition}
+                  </div>
+                )}
               </div>
             </article>
 
@@ -503,6 +531,20 @@ export default function ConditionResult() {
           line-height: 1.65;
           color: var(--ink-soft);
           margin-bottom: 8px;
+        }
+        .col-edition {
+          margin-top: 20px;
+          padding-top: 14px;
+          border-top: 1px dashed var(--line-strong);
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          color: var(--ink-quiet);
+          line-height: 1.6;
+        }
+        .edition-label {
+          color: var(--saffron);
+          font-weight: 700;
+          margin-right: 6px;
         }
 
         .protocol-list { list-style: none; }
